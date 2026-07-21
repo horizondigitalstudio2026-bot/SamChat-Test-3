@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SamChat — Messagerie nouvelle génération</title>
+  <meta name="description" content="SamChat, la messagerie premium à l'identité aurore." />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#7C5CFF" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/design-system.css" />
+  <link rel="stylesheet" href="/css/auth.css" />
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+
+  <!-- ============== ÉCRAN D'AUTHENTIFICATION ============== -->
+  <section id="auth-screen" class="auth-screen">
+    <div class="auth-showcase">
+      <span class="auth-showcase__orb orb-1"></span>
+      <span class="auth-showcase__orb orb-2"></span>
+
+      <div class="auth-showcase__brand">
+        <img src="images/logo.png" alt="SamChat logo" class="auth-showcase__logo">
+        SamChat
+      </div>
+
+      <div class="auth-showcase__headline">
+        <h1>La messagerie qui a <span class="aurora-text">sa propre lumière</span>.</h1>
+        <p>Conversations temps réel, design aurore signature, et une base pensée pour l'IA embarquée. Bienvenue dans une messagerie qui ne ressemble à aucune autre.</p>
+      </div>
+
+      <div class="auth-showcase__features">
+        <div class="auth-showcase__feature"><span class="dot"></span> Temps réel Socket.IO</div>
+        <div class="auth-showcase__feature"><span class="dot"></span> Chiffrement prévu de bout en bout</div>
+        <div class="auth-showcase__feature"><span class="dot"></span> Design glassmorphism premium</div>
+      </div>
+    </div>
+
+    <div class="auth-form-panel">
+      <!-- Formulaire de connexion -->
+      <form id="login-form" class="auth-card glass-panel">
+        <h2>Content de vous revoir</h2>
+        <p class="auth-card__subtitle">Connectez-vous pour retrouver vos conversations.</p>
+
+        <div class="auth-banner" id="login-banner"></div>
+
+        <div class="field-group">
+          <label for="login-identifier">Email ou nom d'utilisateur</label>
+          <div class="field-shell aurora-ring">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input id="login-identifier" name="identifier" type="text" autocomplete="username" required />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="login-password">Mot de passe</label>
+          <div class="field-shell aurora-ring">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input id="login-password" name="password" type="password" autocomplete="current-password" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Se connecter</button>
+
+        <p class="auth-switch">Pas encore de compte ? <button type="button" id="show-register">Créer un compte</button></p>
+      </form>
+
+      <!-- Formulaire d'inscription -->
+      <form id="register-form" class="auth-card glass-panel hidden">
+        <h2>Rejoindre SamChat</h2>
+        <p class="auth-card__subtitle">Créez votre compte en quelques secondes.</p>
+
+        <div class="auth-banner" id="register-banner"></div>
+
+        <div class="field-group">
+          <label for="register-displayName">Nom affiché</label>
+          <div class="field-shell aurora-ring">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input id="register-displayName" name="displayName" type="text" required />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="register-username">Nom d'utilisateur</label>
+          <div class="field-shell aurora-ring">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+            <input id="register-username" name="username" type="text" required minlength="3" maxlength="24" />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="register-email">Email</label>
+          <div class="field-shell aurora-ring">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+            <input id="register-email" name="email" type="email" required />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="register-password">Mot de passe</label>
+          <div class="field-shell aurora-ring">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input id="register-password" name="password" type="password" required minlength="8" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Créer mon compte</button>
+
+        <p class="auth-switch">Déjà un compte ? <button type="button" id="show-login">Se connecter</button></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============== APPLICATION PRINCIPALE ============== -->
+  <main id="app-shell" class="app-shell hidden">
+
+    <!-- Rail de navigation -->
+    <nav class="nav-rail glass-panel">
+      <div class="nav-rail__logo">
+        <img src="images/logo.png" alt="SamChat Logo">
+    </div>
+
+    <div class="nav-rail__items">
+        <button class="nav-rail__item is-active" title="Discussions" aria-label="Discussions">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <button class="nav-rail__item" id="new-chat-btn" title="Nouvelle conversation" aria-label="Nouvelle conversation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <button class="nav-rail__item" title="Paramètres" id="settings-btn" aria-label="Paramètres">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+      <button id="theme-toggle" class="icon-btn" title="Changer de thème" aria-label="Changer de thème">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <img id="nav-avatar" class="nav-rail__avatar" alt="User profile avatar" title="Mon profil" />
+    </nav>
+
+    <!-- Liste des conversations -->
+    <section class="conversation-panel glass-panel">
+      <div class="conversation-panel__header">
+        <h1>Discussions</h1>
+        <div class="search-shell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="conversation-search" placeholder="Rechercher une conversation" />
+        </div>
+      </div>
+      <div id="conversation-list" class="conversation-list"></div>
+    </section>
+
+    <!-- Zone de discussion -->
+    <section id="chat-panel" class="chat-panel glass-panel">
+      <div id="no-chat-selected" class="no-chat-selected">
+        <div class="aurora-blob">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#F4F2FF" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Sélectionnez une conversation</h3>
+        <p>Ou lancez-en une nouvelle pour commencer à discuter sur SamChat.</p>
+      </div>
+
+      <div id="active-chat" class="hidden" style="display:contents;">
+        <header class="chat-header">
+          <button class="icon-btn chat-header__back" id="chat-back-btn" aria-label="Retour">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <div class="avatar-wrap">
+            <img id="chat-header-avatar" class="avatar" alt="Conversation participant avatar shown in the chat header; displays the other user photo or group image when available" />
+            <span id="chat-header-presence" class="presence-dot"></span>
+          </div>
+          <div class="chat-header__info">
+            <div id="chat-header-name" class="chat-header__name"></div>
+            <div id="chat-header-status" class="chat-header__status">hors ligne</div>
+          </div>
+          <div class="chat-header__actions">
+            <button class="icon-btn" title="Appel audio" aria-label="Appel audio">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </button>
+            <button class="icon-btn" title="Appel vidéo" aria-label="Appel vidéo">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m23 7-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <div id="message-list" class="message-list"></div>
+
+        <div id="typing-indicator-wrap" style="padding: 0 24px;"></div>
+
+        <form id="composer-form" class="composer">
+          <button type="button" class="icon-btn" id="attach-btn" title="Joindre un fichier" aria-label="Joindre un fichier">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+          </button>
+          <input type="file" id="file-input" class="visually-hidden" />
+          <div class="composer__shell aurora-ring">
+            <textarea id="composer-input" rows="1" placeholder="Écrivez un message..." aria-label="Écrire un message"></textarea>
+          </div>
+          <button type="submit" class="composer__send" id="send-btn" aria-label="Envoyer" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modale : nouvelle conversation -->
+  <div id="new-chat-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-panel">
+      <div class="modal-card__header">
+        <h3>Nouvelle conversation</h3>
+        <button class="icon-btn" id="close-new-chat-modal" aria-label="Fermer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="search-shell">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="user-search-input" placeholder="Chercher par nom ou identifiant" />
+      </div>
+      <div id="user-search-results" style="overflow-y:auto;"></div>
+    </div>
+  </div>
+
+  <div id="toast-stack" class="toast-stack"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/socket.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
